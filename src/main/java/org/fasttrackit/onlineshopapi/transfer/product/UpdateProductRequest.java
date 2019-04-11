@@ -1,6 +1,6 @@
-package org.fasttrackit.onlineshopapi.transfer;
+package org.fasttrackit.onlineshopapi.transfer.product;
 
-public class CreateProductRequest {
+public class UpdateProductRequest {
 
     private String name;
     private String sku;
@@ -41,7 +41,7 @@ public class CreateProductRequest {
 
     @Override
     public String toString() { //atunci cand vreau sa reprezint sau sa transform un obicet intr-un String
-        return "CreateProductRequest{" +
+        return "UpdateProductRequest{" +
                 "name='" + name + '\'' +
                 ", sku='" + sku + '\'' +
                 ", price=" + price +
