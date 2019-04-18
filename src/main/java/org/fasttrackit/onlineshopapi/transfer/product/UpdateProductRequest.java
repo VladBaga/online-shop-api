@@ -1,7 +1,10 @@
 package org.fasttrackit.onlineshopapi.transfer.product;
 
+import javax.validation.constraints.NotBlank;
+
 public class UpdateProductRequest {
 
+    @NotBlank
     private String name;
     private String sku;
     private double price;

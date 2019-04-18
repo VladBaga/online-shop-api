@@ -94,6 +94,7 @@ public class ProductServiceIntegrationTests {
         Page<Product> products = productService.getProducts(request, PageRequest.of(0, 10));
 
         assertThat(products.getTotalElements(), greaterThanOrEqualTo(1L));
-    }
 
+        // todo: for each product from the response assert that all criteria are matched
+    }
 }
