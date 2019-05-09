@@ -43,7 +43,7 @@ public class ProductController {
 
     @PutMapping("/{id}")
     public ResponseEntity updateProduct (@PathVariable("id") long id, @RequestBody @Valid UpdateProductRequest request) throws ResourceNotFoundException {
-        Product response = productService.updateProduct(id, request);
+        productService.updateProduct(id, request);
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 

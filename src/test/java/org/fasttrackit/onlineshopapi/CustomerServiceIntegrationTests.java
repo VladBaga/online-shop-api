@@ -3,6 +3,7 @@ package org.fasttrackit.onlineshopapi;
 import org.fasttrackit.onlineshopapi.domain.Customer;
 import org.fasttrackit.onlineshopapi.exception.ResourceNotFoundException;
 import org.fasttrackit.onlineshopapi.service.CustomerService;
+import org.fasttrackit.onlineshopapi.steps.CustomerSteps;
 import org.fasttrackit.onlineshopapi.transfer.customer.CreateCustomerRequest;
 import org.fasttrackit.onlineshopapi.transfer.customer.UpdateCustomerRequest;
 import org.junit.Test;
@@ -22,23 +23,15 @@ public class CustomerServiceIntegrationTests {
     @Autowired
     private CustomerService customerService;
 
+    @Autowired
+    private CustomerSteps customerSteps;
+    
     @Test
     public void testCreateCustomer_whenValidRequest_thenReturnCustomerWithId(){ //metodele pt test intotdeauna VOID
-        Customer customer = createCustomer();
+        Customer customer = customerSteps.createCustomer();
 
         assertThat(customer, notNullValue());
         assertThat(customer.getId(), greaterThan(0L));
-    }
-
-    private Customer createCustomer() {
-        CreateCustomerRequest request = new CreateCustomerRequest();
-        request.setFirstName("Vlad");
-        request.setLastName("Pop");
-        request.setAddress("Memorandumului 10");
-        request.setEmail("xyz@yahoo.com");
-        request.setPhone("0747176245");
-
-        return customerService.createCustomer(request);
     }
 
     @Test (expected = ResourceNotFoundException.class)
@@ -48,7 +41,7 @@ public class CustomerServiceIntegrationTests {
 
     @Test
     public void testUpdateCustomer_whenValidRequestWithAllFields_thenReturnUpdatedCustomer() throws ResourceNotFoundException { //ORICE TEST ESTE INDEPENDENT
-        Customer createdCustomer = createCustomer();
+        Customer createdCustomer = customerSteps.createCustomer();
 
         UpdateCustomerRequest request = new UpdateCustomerRequest();
         request.setFirstName(createdCustomer.getFirstName() + " Edited");
@@ -73,7 +66,7 @@ public class CustomerServiceIntegrationTests {
 
     @Test (expected = ResourceNotFoundException.class)
     public void testDeleteCustomer_whenExistingId_thenCustomerIsDeleted() throws ResourceNotFoundException {
-        Customer createdCustomer = createCustomer();
+        Customer createdCustomer = customerSteps.createCustomer();
 
         customerService.deleteCustomer(createdCustomer.getId());
 
