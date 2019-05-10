@@ -1,36 +1,33 @@
 package org.fasttrackit.onlineshopapi.transfer.cart;
 
-import org.fasttrackit.onlineshopapi.transfer.customer.CustomerIdentifier;
-import org.fasttrackit.onlineshopapi.transfer.product.ProductIdentifier;
-
 import java.util.Set;
 
 public class SaveCartRequest {
 
-    private CustomerIdentifier customer;
-    private Set<ProductIdentifier> products;
+    private long customerId;
+    private Set<Long> productsId;
 
-    public CustomerIdentifier getCustomer() {
-        return customer;
+    public long getCustomerId() {
+        return customerId;
     }
 
-    public void setCustomer(CustomerIdentifier customer) {
-        this.customer = customer;
+    public void setCustomerId(long customerId) {
+        this.customerId = customerId;
     }
 
-    public Set<ProductIdentifier> getProducts() {
-        return products;
+    public Set<Long> getProductsId() {
+        return productsId;
     }
 
-    public void setProducts(Set<ProductIdentifier> products) {
-        this.products = products;
+    public void setProductsId(Set<Long> productsId) {
+        this.productsId = productsId;
     }
 
     @Override
     public String toString() {
         return "SaveCartRequest{" +
-                "customer=" + customer +
-                ", products=" + products +
+                "customerId=" + customerId +
+                ", productsId=" + productsId +
                 '}';
     }
 }
